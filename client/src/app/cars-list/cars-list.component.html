@@ -1,34 +1,49 @@
-  <table mat-table  [dataSource]="dataSource" matSort
-         [multiTemplateDataRows]="true"
-         class="mat-elevation-z8">
-  
-    <ng-container matColumnDef="make">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-      <td mat-cell *matCellDef="let car"> {{car.make}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="model">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Model </th>
-      <td mat-cell *matCellDef="let car"> {{car.model}} </td>
-    </ng-container>
+<table mat-table  [dataSource]="dataSource" matSort
+[multiTemplateDataRows]="true"
+class="mat-elevation-z8">
 
-    <ng-container matColumnDef="year_model">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Year model </th>
-      <td mat-cell *matCellDef="let car"> {{car.year_model}} </td>
-    </ng-container>
+<ng-container matColumnDef="make">
+<th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+<td mat-cell *matCellDef="let car"> {{car.make}} </td>
+</ng-container>
 
-    <ng-container matColumnDef="price">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
-      <td mat-cell *matCellDef="let car"> {{car.price}} </td>
-    </ng-container>
+<ng-container matColumnDef="model">
+<th mat-header-cell *matHeaderCellDef mat-sort-header> Model </th>
+<td mat-cell *matCellDef="let car"> {{car.model}} </td>
+</ng-container>
 
-    <ng-container matColumnDef="licensed">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Is licensed </th>
-      <td mat-cell *matCellDef="let car"> {{car.licensed}} </td>
-    </ng-container>
+<ng-container matColumnDef="year_model">
+<th mat-header-cell *matHeaderCellDef mat-sort-header> Year model </th>
+<td mat-cell *matCellDef="let car"> {{car.year_model}} </td>
+</ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let car; columns: displayedColumns;"></tr>
+<ng-container matColumnDef="price">
+<th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+<td mat-cell *matCellDef="let car"> {{car.price}} </td>
+</ng-container>
 
-  </table>
-  
+<ng-container matColumnDef="licensed">
+<th mat-header-cell *matHeaderCellDef mat-sort-header> Is licensed </th>
+<td mat-cell *matCellDef="let car"> {{car.licensed}} </td>
+</ng-container>
+
+
+<ng-container matColumnDef="expandedDetail">
+<td mat-cell *matCellDef="let car" [attr.colspan]="displayedColumns.length" >
+<div class="car-detail">
+<div [@detailExpand]="car == selectedCar ? 'expanded' : 'collapsed'">
+ <div>
+   <div > Car id: {{car.id}} </div>
+   <div > Date added: {{car.date_added | date: 'short'}} </div>
+   <div > Warehouse: {{car.warehouse}} </div>
+ </div>
+</div>
+</div>
+</td>
+</ng-container>
+
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr mat-row *matRowDef="let car; columns: displayedColumns;"
+(click)="selectedCar = selectedCar === car ? null : car"></tr>
+<tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row" ></tr> 
+</table>

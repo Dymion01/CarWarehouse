@@ -6,3 +6,12 @@ table {
     color: black;
   }
 
+  tr.detail-row {
+    height: 0;
+  }
+  
+  .car-detail {
+    overflow: hidden;
+    display: flex;
+  }
+  
