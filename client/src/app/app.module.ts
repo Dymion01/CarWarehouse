@@ -8,11 +8,15 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import {  MatSortModule } from '@angular/material/sort';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { HeaderComponent } from './header/header.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CarsListComponent
+    CarsListComponent,
+    HeaderComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

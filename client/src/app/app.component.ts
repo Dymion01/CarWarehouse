@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CARS } from '../app/shared/mocks/mock-cars';
 import { CarsListComponent } from '../app/cars-list/cars-list.component'
+import { HeaderComponent } from './header/header.component';
 import { Car } from './shared/models/car.model';
 
 @Component({
