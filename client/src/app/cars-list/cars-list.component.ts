@@ -5,6 +5,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { CartService } from '../services/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cars-list',
@@ -26,15 +27,15 @@ export class CarsListComponent implements AfterViewInit {
   // dataSource = new MatTableDataSource<Car>(this.ELEMENT_DATA);
   dataSource = new MatTableDataSource<Car>(CARS);
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private cartService: CartService){}
+  constructor(private cartService: CartService, private toastr: ToastrService){}
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
 
     
   }
-  addtocart(car: Car){
+  addToCart(car: Car){
     this.cartService.addToCart(car);
-    
+    this.toastr.success("Dodano do koszyka");
   }
 }
 

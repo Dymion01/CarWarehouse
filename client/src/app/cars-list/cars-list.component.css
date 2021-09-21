@@ -15,3 +15,7 @@ table {
     display: flex;
   }
   
+  .carDetailSpan{
+    font-weight: bold;
+  }
+

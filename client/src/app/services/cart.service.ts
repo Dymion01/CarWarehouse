@@ -20,6 +20,7 @@ export class CartService {
   addToCart(product: any){
     this.cartItemList.push(product);
     this.productList.next(this.cartItemList);
+
     this.getTotalPrice();
   }
   getTotalPrice(): number{

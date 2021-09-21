@@ -33,10 +33,10 @@ class="mat-elevation-z8">
 <div class="car-detail">
 <div [@detailExpand]="car == selectedCar ? 'expanded' : 'collapsed'">
  <div>
-   <div > Car id: {{car.id}} </div>
-   <div > Date added: {{car.date_added | date: 'short'}} </div>
-   <div > Warehouse: {{car.warehouse}} </div>
-   <button *ngIf="car.licensed" type="button" class="btn btn-primary" (click)=addtocart(car)>Add to cart</button>
+   <p> <span class="carDetailSpan">Car id: </span>{{car.id}} </p>
+   <p> <span class="carDetailSpan">Date added: </span>{{car.date_added | date: 'short'}} </p>
+   <p> <span class="carDetailSpan">Warehouse: </span>{{car.warehouse}} </p>
+   <button *ngIf="car.licensed" type="button" class="btn btn-primary" (click)=addToCart(car)>Add to cart</button>
  </div>
 </div>
 </div>
