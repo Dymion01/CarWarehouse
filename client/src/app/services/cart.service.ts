@@ -6,7 +6,7 @@ import { Car } from '../shared/models/car.model';
   providedIn: 'root'
 })
 export class CartService {
-  public cartItemList: Car[]= [];
+  public cartItemList: any= [];
   public productList = new BehaviorSubject<any>([]);
   constructor() { }
   getProducts(){
@@ -17,23 +17,24 @@ export class CartService {
     this.cartItemList.push(...car);
     this.productList.next(car);
   }
-  addToCart(car: Car){
-    this.cartItemList.push(car);
+  addToCart(product: any){
+    this.cartItemList.push(product);
     this.productList.next(this.cartItemList);
     this.getTotalPrice();
-    console.log(this.cartItemList)
   }
-  getTotalPrice(){
+  getTotalPrice(): number{
     let total = 0;
     this.cartItemList.map((car: Car) =>{
       total += car.price
     })
+    return total;
   }
-  removeCartItem(car: Car){
-    this.cartItemList.map((x: Car, index:any)=>{
-      if(car.id === x.id){
-        this.cartItemList.slice(index,1);
+  removeCartItem(product: any){
+    this.cartItemList.map((x: any, index: any)=>{
+      if(product.id === x.id){
+        this.cartItemList.splice(index,1);
       }
     })
+    this.productList.next(this.cartItemList);
   }
 }

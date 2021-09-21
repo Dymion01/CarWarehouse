@@ -36,7 +36,7 @@ class="mat-elevation-z8">
    <div > Car id: {{car.id}} </div>
    <div > Date added: {{car.date_added | date: 'short'}} </div>
    <div > Warehouse: {{car.warehouse}} </div>
-   <button type="button" class="btn btn-primary" (click)=addtocart(car)>Add to cart</button>
+   <button *ngIf="car.licensed" type="button" class="btn btn-primary" (click)=addtocart(car)>Add to cart</button>
  </div>
 </div>
 </div>
