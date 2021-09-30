@@ -1,10 +1,10 @@
-export class Car {
+export interface Car {
     "id": number;
     "make": string;
     "model": string;
-    "year_model": number;
+    "yearModel": number;
     "price": number;
     "licensed": boolean;
-    "date_added": Date;
+    "dateAdded": Date;
     "warehouse": string;
 }   

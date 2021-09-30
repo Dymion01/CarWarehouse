@@ -6,7 +6,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { CartService } from '../services/cart.service';
 import { ToastrService } from 'ngx-toastr';
-
+import { CarService } from '../services/car.service';
+import { catchError} from 'rxjs/operators'
 @Component({
   selector: 'app-cars-list',
   templateUrl: './cars-list.component.html',
@@ -20,22 +21,42 @@ import { ToastrService } from 'ngx-toastr';
   ],
 
 })
-export class CarsListComponent implements AfterViewInit {
-  @Input('ELEMENT_DATA')  ELEMENT_DATA!:  Car[];
+export class CarsListComponent implements AfterViewInit, OnInit {
+  // @Input('ELEMENT_DATA')  ELEMENT_DATA!:  Car[];
   selectedCar?: Car;
   displayedColumns: string[] = ['make', 'model', 'year_model', 'price', 'licensed' ];
+  dataSource : any;
   // dataSource = new MatTableDataSource<Car>(this.ELEMENT_DATA);
-  dataSource = new MatTableDataSource<Car>(CARS);
+  // dataSource = new MatTableDataSource<Car>(CARS);
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private cartService: CartService, private toastr: ToastrService){}
+  constructor(private cartService: CartService, private toastr: ToastrService, 
+      private carService: CarService){}
+
+  ngOnInit(){
+    this.loadTableData();
+  }
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
+    
+    // this.dataSource.sort = this.sort;
 
     
   }
   addToCart(car: Car){
     this.cartService.addToCart(car);
     this.toastr.success("Dodano do koszyka");
+  }
+
+  private loadTableData(){
+    let carsTable : Car[]=[];
+    this.carService.getCars().pipe(
+      catchError((err: any) => {
+        return err
+      })
+    ).subscribe((res:any) => {
+      carsTable.push(res as Car)
+      console.log(carsTable);
+      this.dataSource = new MatTableDataSource<Car>(res as Car[]);
+    })
   }
 }
 

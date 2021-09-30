@@ -14,7 +14,7 @@ class="mat-elevation-z8">
 
 <ng-container matColumnDef="year_model">
 <th mat-header-cell *matHeaderCellDef mat-sort-header> Year model </th>
-<td mat-cell *matCellDef="let car"> {{car.year_model}} </td>
+<td mat-cell *matCellDef="let car"> {{car.yearModel}} </td>
 </ng-container>
 
 <ng-container matColumnDef="price">
@@ -34,7 +34,7 @@ class="mat-elevation-z8">
 <div [@detailExpand]="car == selectedCar ? 'expanded' : 'collapsed'">
  <div>
    <p> <span class="carDetailSpan">Car id: </span>{{car.id}} </p>
-   <p> <span class="carDetailSpan">Date added: </span>{{car.date_added | date: 'short'}} </p>
+   <p> <span class="carDetailSpan">Date added: </span>{{car.dateAdded | date: 'short'}} </p>
    <p> <span class="carDetailSpan">Warehouse: </span>{{car.warehouse}} </p>
    <button *ngIf="car.licensed" type="button" class="btn btn-primary" (click)=addToCart(car)>Add to cart</button>
  </div>
